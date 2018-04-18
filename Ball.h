@@ -19,6 +19,7 @@ using namespace sf;
 		float energyLostCoef;
 
 	public:
+		Ball();
 		Ball(Color initialColor, float initialRadius, float energyLostCoef, Vector2<float> initialPosition,Vector2<float> initialVelocity, Vector2<float> initialAcceleration);
 		
 		void setColor(Color newColor);
@@ -38,9 +39,9 @@ using namespace sf;
 		CircleShape getShape();
 		float getEnergyLostCoef();
 
-		void checkBorderCollisions(Vector2u borders);
-		//void handleCollision(Vector2<float> normal, float distanceToShift, float obstacleMass, Vector2<float> obstacleVelocity);
+		//void checkBorderCollisions(Vector2u borders);
 		void move(float time);
+		void update(float time);
 		~Ball();
 	};
 #endif //__BALL_H_INCLUDED__

@@ -3,6 +3,10 @@
 
 using namespace sf;
 
+Ball::Ball()
+{
+};
+
 Ball::Ball(Color initialColor,
 			float initialRadius, 
 			float energyLostCoef, 
@@ -51,13 +55,13 @@ void Ball::setEnergyLostCoef(float newEnergyLostCoef)
 	this->energyLostCoef = newEnergyLostCoef;
 }
 
-float Ball::getRadius() {
-
+float Ball::getRadius()
+{
 	return this->radius;
 }
 
-Color Ball::getColor() {
-
+Color Ball::getColor()
+{
 	return this->color;
 }
 
@@ -97,33 +101,11 @@ void Ball::move(float time)
 	ballShape.setPosition(position);
 }
 
-void Ball::checkBorderCollisions(Vector2u borders) {
-	if ((velocity.x > 0) and (position.x + radius >= borders.x)) {//if goes right and collide with the right border
-		position.x = borders.x - radius;
-		//std::cout << "Velocity1 before collision = (" << firstBall->getVelocity().x << ", " << firstBall->getVelocity().y << "), "
-		this->velocity.x = -energyLostCoef*velocity.x;
-		//this->acceleration.x = (-1)*acceleration.x;
-	}
-
-	else if ((velocity.x < 0) and (position.x-radius <= 0)) { //or goes left and collide with the left border
-		position.x = radius;
-		this->velocity.x = -energyLostCoef *velocity.x;
-		//this->acceleration.x = (-1)*acceleration.x;
-	}
-
-	if ((velocity.y > 0) and (position.y + radius >= borders.y)) { //if goes down and collide with the bottom
-		position.y = borders.y - radius;
-		this->velocity.y = -energyLostCoef *velocity.y;
-		//this->acceleration.y = (-1)*acceleration.y;
-	}
-	else if ((velocity.y<0) and (position.y - radius <= 0)) { // or goes up and collide with the top
-		position.y = radius;
-		this->velocity.y = -energyLostCoef*velocity.y;
-		//this->acceleration.y = (-1)*acceleration.y;
-	}
+void Ball::update(float time) 
+{
+	move(time);
+	//checkBorderCollisions();
 }
-
-
 
 Ball::~Ball()
 {
